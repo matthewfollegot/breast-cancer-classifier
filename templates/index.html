@@ -82,21 +82,21 @@
        <br> 
         <br>
         <h1> Enter Leukocyte Numbers</h1>
-        <input type="text" name="leukocyte"   placeholder="worst fractal dimension"  />
+        <input type="text" name="leukocyte"   placeholder="current leukocyte value"  />
+        <h1> Enter Temperature Numbers</h1>
+        <input type="text" name="temperature"   placeholder="worst fractal dimension"  />
+        <h1> Enter Blood Pressure Numbers</h1>
+        <input type="text" name="blood pressure"   placeholder="current blood pressure"  />
+        <h1> Enter Heart Rate Numbers</h1>
+        <input type="text" name="heart rate"   placeholder="current heart rate"  />
         <br>
         <!-- Show button -->
-            <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict Cancer</strong></button></a>
+         <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict Cancer</strong></button></a>
         
     </form>
     </center>
    
-   <!-- Show predicted output using ML model --> 
-   <div>
-       <center>
-   <h1>{{ prediction_text }}</h1>
-   <h1>Current Leukocyte Value: {{ leukocyte_value }}</h1>
-       </center>
-   </div>
+   
 
  </div>
 

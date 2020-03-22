@@ -14,7 +14,13 @@ def home():
 def predict():
     input_features = [float(x) for x in request.form.values()]
     leukocyte_value = input_features[30]
+    temperature = input_features[31]
+    blood_pressure = input_features[32]
+    heart_rate = input_features[33]
     #print(str(leukocyteValue))
+    del(input_features[33])
+    del(input_features[32])
+    del(input_features[31])
     del(input_features[30])
     features_value = [np.array(input_features)]
     features_name = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
@@ -36,7 +42,7 @@ def predict():
         res_val = "no breast cancer"
         
 
-    return render_template('index.html', prediction_text='Patient has {}'.format(res_val), leukocyte_value=leukocyte_value)
+    return render_template('dashboard.html', prediction_text='Patient has {}'.format(res_val), leukocyte_value=leukocyte_value, temperature=temperature, heart_rate=heart_rate, blood_pressure=blood_pressure)
 
 if __name__ == "__main__":
     app.run()
