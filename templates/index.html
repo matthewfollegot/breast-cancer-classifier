@@ -3,100 +3,96 @@
 <!DOCTYPE html>
 <html >
 <head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <script src="https://kit.fontawesome.com/0683469563.js" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <title>Breast Cancer DSS </title>
-
-  <style>
-
-    /* CSS code for button */
-    .button_css {
-    color: #494949 !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #ffffff;
-    padding: 20px;
-    border: 4px solid #494949 !important;
-    display: inline-block;
-    transition: all 0.4s ease 0s;
-    }
-    
-    .button_css:hover {
-    color: #ffffff !important;
-    background: #f6b93b;
-    border-color: #f6b93b !important;
-    transition: all 0.4s ease 0s;
-    }
-  </style>
-
 </head>
+<style>
+    .header{
+        background-color: darkgrey;
+        color: black;
+        border: black;
+        text-align: center;
+        border-radius: 10px;
+        outline: black;
+    }
+</style>
 
 <body>
-
- 
- 
- 
- <div class="login">
-	
-    <!-- Get input for predict the cancer -->
-    <center>
+<div class="header">
+    <h1>{{ patient }}'s File</h1>
+    <i class="fas fa-stethoscope"></i>
+    <h3>Please enter all relevant values into the patient's case file below.</h3>
+</div> 
+ <div class="form">
     <form action="{{ url_for('predict')}}"method="post">
-        <h1>Enter Tumor Attributes </h1>
-        
-    	<input type="text" name="mean_radius" value="80"  placeholder="mean radius"  />
-        <input type="text" name="mean_texture" value="80"  placeholder="mean texture"  />
-		<input type="text" name="mean_perimeter" value="80"  placeholder="mean perimeter"  />
-		<input type="text" name="mean_area" value="80"  placeholder="mean area"  />
-        <input type="text" name="mean_smoothness" value="80"  placeholder="mean smoothness"  />
-		<input type="text" name="mean_compactness" value="80"  placeholder="mean compactness"  />
-		<br>
-    	<input type="text" name="mean_concavity" value="80"  placeholder="mean concavity"  />
-        <input type="text" name="mean_concave_points" value="80"  placeholder="mean concave points"  />
-		<input type="text" name="mean_symmetry" value="80"  placeholder="mean symmetry"  />
-    	<input type="text" name="mean_fractal_dimension" value="80"  placeholder="mean fractal dimension"  />
-        <input type="text" name="radius_error" value="80"  placeholder="radius error"  />
-		<input type="text" name="texture_error" value="80"  placeholder="texture error"  />
-		<br>
-    	<input type="text" name="perimeter_error" value="80"  placeholder="perimeter error"  />
-        <input type="text" name="area_error" value="80"  placeholder="area error "  />
-		<input type="text" name="smoothness_error" value="80"  placeholder="smoothness error"  />
-    	<input type="text" name="compactness_error" value="80"  placeholder="compactness error"  />
-        <input type="text" name="concavity_error" value="80"  placeholder="concavity error"  />
-		<input type="text" name="concave_points_error" value="80"  placeholder="concave points error"  />
-    	<br>
-    	<input type="text" name="symmetry_error" value="80"  placeholder="symmetry error"  />
-        <input type="text" name="fractal_dimension_error" value="80"  placeholder="fractal dimension error"  />
-		<input type="text" name="worst_radius" value="80"  placeholder="worst radius"  />
-    	<input type="text" name="worst_texture" value="80"  placeholder="worst texture"  />
-        <input type="text" name="worst_perimeter" value="80"  placeholder="worst perimeter"  />
-		<input type="text" name="worst_area" value="80"  placeholder="worst area"  />
-		<br> 
-    	 <input type="text" name="worst_smoothness" value="80"  placeholder="worst smoothness"  />
-        <input type="text" name="worst_compactness" value="80"  placeholder="worst compactness"  />
-		<input type="text" name="worst_concavity" value="80"  placeholder="worst concavity"  />
-    	<input type="text" name="worst_concave_points" value="80"  placeholder="worst concave points"  />
-        <input type="text" name="worst_symmetry" value="80"  placeholder="'worst symmetry"  />
-		<input type="text" name="worst_fractal_dimension" value="80"  placeholder="worst fractal dimension"  />
-        <br>
-        <br>
-       <br> 
-        <br>
-        <h1> Enter Leukocyte Numbers</h1>
-        <input type="text" name="leukocyte"   placeholder="current leukocyte value"  />
-        <h1> Enter Temperature Numbers</h1>
-        <input type="text" name="temperature"   placeholder="worst fractal dimension"  />
-        <h1> Enter Blood Pressure Numbers</h1>
-        <input type="text" name="blood pressure"   placeholder="current blood pressure"  />
-        <h1> Enter Heart Rate Numbers</h1>
-        <input type="text" name="heart rate"   placeholder="current heart rate"  />
-        <br>
-        <!-- Show button -->
-         <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict Cancer</strong></button></a>
-        
+        <center>
+            <h2>Tumor Attributes </h2>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="text" name="mean_radius" value="80"  placeholder="mean radius"  />
+                    <input type="text" name="mean_texture" value="80"  placeholder="mean texture"  />
+                    <input type="text" name="mean_perimeter" value="80"  placeholder="mean perimeter"  />
+                    <input type="text" name="mean_area" value="80"  placeholder="mean area"  />
+                    <input type="text" name="mean_smoothness" value="80"  placeholder="mean smoothness"  />
+                    <input type="text" name="mean_compactness" value="80"  placeholder="mean compactness"  />
+                    <input type="text" name="mean_concavity" value="80"  placeholder="mean concavity"  />
+                    <input type="text" name="mean_concave_points" value="80"  placeholder="mean concave points"  />
+                    <input type="text" name="mean_symmetry" value="80"  placeholder="mean symmetry"  />
+                    <input type="text" name="mean_fractal_dimension" value="80"  placeholder="mean fractal dimension"  />
+                </div>
+                <div class="col-sm">
+                    <input type="text" name="radius_error" value="80"  placeholder="radius error"  />
+                    <input type="text" name="texture_error" value="80"  placeholder="texture error"  />
+                    <input type="text" name="perimeter_error" value="80"  placeholder="perimeter error"  />
+                    <input type="text" name="area_error" value="80"  placeholder="area error "  />
+                    <input type="text" name="smoothness_error" value="80"  placeholder="smoothness error"  />
+                    <input type="text" name="compactness_error" value="80"  placeholder="compactness error"  />
+                    <input type="text" name="concavity_error" value="80"  placeholder="concavity error"  />
+                    <input type="text" name="concave_points_error" value="80"  placeholder="concave points error"  />
+                    <input type="text" name="symmetry_error" value="80"  placeholder="symmetry error"  />
+                    <input type="text" name="fractal_dimension_error" value="80"  placeholder="fractal dimension error"  /> 
+                </div>  
+                <div class="col-sm">
+                    <input type="text" name="worst_radius" value="80"  placeholder="worst radius"  />
+                    <input type="text" name="worst_texture" value="80"  placeholder="worst texture"  />
+                    <input type="text" name="worst_perimeter" value="80"  placeholder="worst perimeter"  />
+                    <input type="text" name="worst_area" value="80"  placeholder="worst area"  />
+                    <input type="text" name="worst_smoothness" value="80"  placeholder="worst smoothness"  />
+                    <input type="text" name="worst_compactness" value="80"  placeholder="worst compactness"  />
+                    <input type="text" name="worst_concavity" value="80"  placeholder="worst concavity"  />
+                    <input type="text" name="worst_concave_points" value="80"  placeholder="worst concave points"  />
+                    <input type="text" name="worst_symmetry" value="80"  placeholder="'worst symmetry"  />
+                    <input type="text" name="worst_fractal_dimension" value="80"  placeholder="worst fractal dimension"  />
+                </div> 	
+            </div>
+            <br><br>
+            <h2> Recorded Patient Measurements</h2><br>
+            <div class="row">
+                <div class="col-sm">
+                    <p>Blood Leukocyte Levels</p>
+                    <input type="text" name="leukocyte"    /><br>
+                </div>
+                <div class="col-sm">
+                    <p> Temperature </p>
+                    <input type="text" name="temperature"     /><br>
+                </div>
+                <div class="col-sm">
+                    <p> Blood Pressure </p>
+                    <input type="text" name="blood pressure"    /><br>
+                </div>
+                <div class="col-sm">
+                    <p> Heart Rate </p>
+                    <input type="text" name="heart rate"/><br>
+                </div>
+            </div>
+            <br>
+            <br>
+            
+                <button type="submit" class="btn btn-outline-dark"><strong>Get Results</strong></button></a>
+        </center>
     </form>
-    </center>
-   
-   
-
  </div>
 
 </body>
