@@ -5,7 +5,6 @@ import pickle
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -13,15 +12,11 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     input_features = [float(x) for x in request.form.values()]
-    leukocyte_value = input_features[30]
-    temperature = input_features[31]
-    blood_pressure = input_features[32]
-    heart_rate = input_features[33]
+    heart_rate = input_features.pop(33) 
+    blood_pressure = input_features.pop(32)
+    temperature =input_features.pop(31) 
+    leukocyte_value = input_features.pop(30)
     #print(str(leukocyteValue))
-    del(input_features[33])
-    del(input_features[32])
-    del(input_features[31])
-    del(input_features[30])
     features_value = [np.array(input_features)]
     features_name = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
        'mean smoothness', 'mean compactness', 'mean concavity',
