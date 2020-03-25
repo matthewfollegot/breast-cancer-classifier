@@ -35,6 +35,8 @@
    <div>
        <center>
    <h1>{{ prediction_text }}</h1>
+   <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300"/>
+   <img src="{{ url_for('static', filename='bcc-perimeter.png') }}" height="150" width="300"/>
    <h1>Current Leukocyte Value: {{ leukocyte_value }}</h1>
    <h1>Current Temperature Value: {{ temperature }}</h1>
    <h1>Current Blood Pressure Value: {{ blood_pressure }}</h1>

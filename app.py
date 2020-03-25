@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 import pickle
 
 app = Flask(__name__)
@@ -16,7 +16,6 @@ def predict():
     blood_pressure = input_features.pop(32)
     temperature =input_features.pop(31) 
     leukocyte_value = input_features.pop(30)
-    #print(str(leukocyteValue))
     features_value = [np.array(input_features)]
     features_name = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
        'mean smoothness', 'mean compactness', 'mean concavity',
