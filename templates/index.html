@@ -9,25 +9,50 @@
   <title>Breast Cancer DSS </title>
 </head>
 <style>
+    @import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
     .header{
         background-color: darkgrey;
         color: black;
         border: black;
-        text-align: center;
         border-radius: 10px;
         outline: black;
+        padding-left: 25px;
+        font-family: 'Inter', sans-serif;
+    }
+    .icon{
+        float: left;
+    }
+    .form{
+        font-family: 'Inter', sans-serif;
+        padding-left: 55px;
+    }
+    .miscMeasurements{
+        line-height:1px;
     }
 </style>
 
 <body>
-<div class="header">
-    <h1>{{ patient }}'s File</h1>
-    <i class="fas fa-stethoscope"></i>
-    <h3>Please enter all relevant values into the patient's case file below.</h3>
+<div class="header row">
+    <div class="col-10">
+        <br>
+        <h1>{{ patient }}'s File</h1>
+        <h3>Please enter all relevant values into the patient's case file below.</h3>
+        <br>
+    </div>
+    <div class="col-1 icon">
+        <br>
+        <i class="fas fa-stethoscope fa-5x"></i>
+    </div>
+    <br>
 </div> 
  <div class="form">
     <form action="{{ url_for('predict')}}"method="post">
-        <center>
+        
+            <br>
             <h2>Tumor Attributes </h2>
             <div class="row">
                 <div class="col-sm">
@@ -69,7 +94,7 @@
             </div>
             <br><br>
             <h2> Recorded Patient Measurements</h2><br>
-            <div class="row">
+            <div class="row miscMeasurements">
                 <div class="col-sm">
                     <p>Blood Leukocyte Levels</p>
                     <input type="text" name="leukocyte"    /><br>
@@ -89,9 +114,12 @@
             </div>
             <br>
             <br>
-            
+            <br>
+            <center>
                 <button type="submit" class="btn btn-outline-dark"><strong>Get Results</strong></button></a>
-        </center>
+            </center>
+            
+        
     </form>
  </div>
 
