@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from flask import Flask, request, render_template, url_for
+from random import randint
 import pickle
 
 app = Flask(__name__)
@@ -11,9 +12,11 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    input_features = [float(x) for x in request.form.values()]
-    heart_rate = input_features.pop(33) 
+    input_features = [x for x in request.form.values()]
+    patient_name = input_features.pop(0)
     blood_pressure = input_features.pop(32)
+    input_features = [float(x) for x in input_features]
+    heart_rate = input_features.pop(32) 
     temperature = input_features.pop(31) 
     leukocyte_value = input_features.pop(30)
     radius_mean = input_features[0]
@@ -36,11 +39,14 @@ def predict():
         cancer = True
     else:
         cancer = False
-        
+
+    patient_id = randint(12345, 12345678)
 
     return render_template(
         'dashboard.html',
         cancer=cancer,
+        patient_name=patient_name,
+        patient_id=patient_id,
         leukocyte_value=leukocyte_value,
         temperature=temperature,
         heart_rate=heart_rate,

@@ -27,6 +27,12 @@
     transition: all 0.4s ease 0s;
     }
 
+    .header {
+      overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    }
+
     .warning {
       color: red
     }
@@ -72,6 +78,10 @@
 </head>
 
 <body>
+  <div class="header">
+    <div>{{ patient_name }}'s file</div>
+      patient ID: {{patient_id}}
+    </div>
   <div> 
     <center>
   {% if cancer == True %}

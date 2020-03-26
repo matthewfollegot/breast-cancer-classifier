@@ -23,9 +23,19 @@ html { font-family: 'Inter', sans-serif; }
         padding-left: 25px;
         font-family: 'Inter', sans-serif;
     }
-    .icon{
-        float: left;
+
+    .title {
+        padding: 40px;
+        float: left
     }
+
+    .icon{
+        margin-left: 100px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        float: right;
+    }
+
     .form{
         font-family: 'Inter', sans-serif;
         padding-left: 55px;
@@ -37,21 +47,16 @@ html { font-family: 'Inter', sans-serif; }
 
 <body>
 <div class="header row">
-    <div class="col-10">
-        <br>
-        <h1>{{ patient }}'s File</h1>
-        <h3>Please enter all relevant values into the patient's case file below.</h3>
+    <div>
+
+        <h3 class="title">Please enter all relevant values into the patient's case file below.</h3>
+        <i class="icon fas fa-stethoscope fa-5x"></i>
         <br>
     </div>
-    <div class="col-1 icon">
-        <br>
-        <i class="fas fa-stethoscope fa-5x"></i>
-    </div>
-    <br>
 </div> 
  <div class="form">
     <form action="{{ url_for('predict')}}"method="post">
-        
+            <br><input type="text" name="patient_name" placeholder="patient's name"  /><br>
             <br>
             <h2>Tumor Attributes </h2>
             <div class="row">
