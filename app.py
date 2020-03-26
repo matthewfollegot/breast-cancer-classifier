@@ -16,11 +16,16 @@ def predict():
     patient_name = input_features.pop(0)
     blood_pressure = input_features.pop(32)
     input_features = [float(x) for x in input_features]
+
     heart_rate = input_features.pop(32) 
     temperature = input_features.pop(31) 
     leukocyte_value = input_features.pop(30)
     radius_mean = input_features[0]
     perimeter_mean = input_features[2]
+    area_mean = input_features[3]
+    concavity = input_features[6]
+    concave_points = input_features[7]
+
     features_value = [np.array(input_features)]
     features_name = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
        'mean smoothness', 'mean compactness', 'mean concavity',
@@ -41,6 +46,7 @@ def predict():
         cancer = False
 
     patient_id = randint(12345, 12345678)
+        
 
     return render_template(
         'dashboard.html',
@@ -52,7 +58,10 @@ def predict():
         heart_rate=heart_rate,
         blood_pressure=blood_pressure,
         radius_mean=radius_mean,
-        perimeter_mean=perimeter_mean
+        perimeter_mean=perimeter_mean,
+        area_mean=area_mean,
+        concavity=concavity,
+        concave_points=concave_points
     )
 
 if __name__ == "__main__":
