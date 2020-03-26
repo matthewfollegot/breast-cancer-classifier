@@ -31,24 +31,65 @@
       color: red
     }
 
-    .attribute {
-      width: 33%;
+    .title {
+      padding-bottom: 0px;
+      margin-bottom: 5px;
+    }
+
+    .bold {
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+      padding-bottom: -5px;
+      margin-bottom: 0px;
+      font-style: italic;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
     }
   </style>
 
 </head>
 
 <body>
-
   <div> 
     <center>
-
-  <h1>Patient has {{ res_val }}</h1>
+  {% if cancer == True %}
+  <h2 class="title">Tumour Classifcation Result:</h2>
+  <div class="tooltip">Patient's tumour is <span class="bold">cancerous</span> with a ~95% confidence interval
+    <span class="tooltiptext">The probability of a false positive is about 3%. Thus, the true accuracy is 97%</span>
+  </div>
+  {% else %}
+  <h2 class="title">Tumour Classifcation Result:</h2>
+  <div class="tooltip">Patient's tumour is <span class="bold">not cancerous</span> with a ~95% confidence interval
+    <span class="tooltiptext">The probability of a false negative is about 2%. Thus, the true accuracy is 98%</span>
+  </div>
+  {% endif %}
+  
   <figure>
     <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300"/>
     <figcaption>Figure 1 - histogram of mean radius as a result of tumour classification.</figcaption>
-  </figure>
-  
+  </figure> 
   {% if radius_mean >= 17 %}
     <p class="warning">mean radius is ≥ 17, thus it is highly likely that the tumour is cancerous</p>
   {% else %}

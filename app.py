@@ -33,14 +33,14 @@ def predict():
     output = model.predict(df)
         
     if output == 0:
-        res_val = "** breast cancer **"
+        cancer = True
     else:
-        res_val = "no breast cancer"
+        cancer = False
         
 
     return render_template(
         'dashboard.html',
-        res_val=res_val,
+        cancer=cancer,
         leukocyte_value=leukocyte_value,
         temperature=temperature,
         heart_rate=heart_rate,
