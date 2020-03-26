@@ -26,23 +26,59 @@
     border-color: #f6b93b !important;
     transition: all 0.4s ease 0s;
     }
+
+    .warning {
+      color: red
+    }
+
+    .attribute {
+      width: 33%;
+    }
   </style>
 
 </head>
 
 <body>
 
-   <div>
-       <center>
-   <h1>{{ prediction_text }}</h1>
-   <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300"/>
-   <img src="{{ url_for('static', filename='bcc-perimeter.png') }}" height="150" width="300"/>
-   <h1>Current Leukocyte Value: {{ leukocyte_value }}</h1>
-   <h1>Current Temperature Value: {{ temperature }}</h1>
-   <h1>Current Blood Pressure Value: {{ blood_pressure }}</h1>
-   <h1>Current Heart Rate Value: {{ heart_rate }}</h1>
-       </center>
-   </div>
+  <div> 
+    <center>
+
+  <h1>Patient has {{ res_val }}</h1>
+  <figure>
+    <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300"/>
+    <figcaption>Figure 1 - histogram of mean radius as a result of tumour classification.</figcaption>
+  </figure>
+  
+  {% if radius_mean >= 17 %}
+    <p class="warning">mean radius is ≥ 17, thus it is highly likely that the tumour is cancerous</p>
+  {% else %}
+    <p>Since the mean radius is not ≥ 17, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
+  {% endif %}
+
+  <figure>
+    <img src="{{ url_for('static', filename='bcc-perimeter.png') }}" height="150" width="300"/>
+    <figcaption>Figure 2 - histogram of mean perimeter as a result of tumour classification</figcaption>
+  </figure>
+  {% if perimeter_mean >= 120 %}
+    <p class="warning">mean perimeter is ≥ 120, thus it is highly likely that the tumour is cancerous</p>
+  {% else %}
+    <p>Since the mean perimeter is not ≥ 120, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
+  {% endif %}
+  <br>
+    
+  {% if leukocyte_value < 4000 or leukocyte_value > 10000 %}
+    <h1 class="warning">Current Leukocyte Value is {{ leukocyte_value }} per microLitre of blood</h1>
+    <h3 class="warning">The normal range is between 4,000 and 10,000 White Blood Cells per microLitre of blood</h3>
+    <h4 class="warning">This may serve as an additional data point that the patient's body is fighting something foreign, which may or may not be cancerous cells.</h4>
+  {% else %}
+    <h1>Current Leukocyte Value is {{ leukocyte_value }} per microLitre of blood</h1>
+  {% endif %}
+
+  <h1>Current Temperature Value: {{ temperature }}</h1>
+  <h1>Current Blood Pressure Value: {{ blood_pressure }}</h1>
+  <h1>Current Heart Rate Value: {{ heart_rate }}</h1>
+    </center>
+  </div>
 
  </div>
 
