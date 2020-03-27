@@ -19,7 +19,7 @@ def predict():
 
     heart_rate = input_features.pop(32) 
     temperature = input_features.pop(31) 
-    leukocyte_value = input_features.pop(30)
+    leukocyte_value = int(input_features.pop(30))
     radius_mean = input_features[0]
     perimeter_mean = input_features[2]
     area_mean = input_features[3]
@@ -46,6 +46,8 @@ def predict():
         cancer = False
 
     patient_id = randint(12345, 12345678)
+
+    classified_blood_pressure = classify_blood_pressure(blood_pressure)
         
 
     return render_template(
@@ -57,12 +59,30 @@ def predict():
         temperature=temperature,
         heart_rate=heart_rate,
         blood_pressure=blood_pressure,
+        classified_blood_pressure=classified_blood_pressure,
         radius_mean=radius_mean,
         perimeter_mean=perimeter_mean,
         area_mean=area_mean,
         concavity=concavity,
         concave_points=concave_points
     )
+
+def classify_blood_pressure(blood_pressure):
+    systolic, diastolic = [int(num) for num in blood_pressure.split('/')]
+    print(systolic)
+    print(diastolic)
+    if systolic < 90 and diastolic < 60:
+        return "low blood pressure"
+    if systolic < 120 and diastolic <= 80:
+        return "normal blood pressure"
+    elif systolic >= 120 and systolic < 130 and diastolic <= 80:
+        return "elevated blood pressure (minor concern if it persists)"
+    elif systolic > 130 and systolic < 140 and diastolic > 80 and diastolic < 90:
+        return "high blood pressure (stage 1)"
+    elif systolic >= 180 and diastolic > 120:
+        return "hypertensive crisis!"
+    elif systolic >= 140 and diastolic >= 90:
+        return "high blood pressure (stage 2)"
 
 if __name__ == "__main__":
     app.run()
