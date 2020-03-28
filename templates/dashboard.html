@@ -1,36 +1,48 @@
 <!-- This is GUI for Breast Cancer Detection Application Using Machine Learning Classifer -->
 
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
   <meta charset="UTF-8">
   <title>Breast Cancer DSS </title>
 
   <style>
+    @import url('https://rsms.me/inter/inter.css');
+
+    html {
+      font-family: 'Inter', sans-serif;
+    }
+
+    @supports (font-variation-settings: normal) {
+      html {
+        font-family: 'Inter var', sans-serif;
+      }
+    }
 
     /* CSS code for button */
     .button_css {
-    color: #494949 !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #ffffff;
-    padding: 20px;
-    border: 4px solid #494949 !important;
-    display: inline-block;
-    transition: all 0.4s ease 0s;
+      color: #494949 !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: #ffffff;
+      padding: 20px;
+      border: 4px solid #494949 !important;
+      display: inline-block;
+      transition: all 0.4s ease 0s;
     }
-    
+
     .button_css:hover {
-    color: #ffffff !important;
-    background: #f6b93b;
-    border-color: #f6b93b !important;
-    transition: all 0.4s ease 0s;
+      color: #ffffff !important;
+      background: #f6b93b;
+      border-color: #f6b93b !important;
+      transition: all 0.4s ease 0s;
     }
 
     .header {
       overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 20px 10px;
+      background-color: #f1f1f1;
+      padding: 20px 10px;
     }
 
     .warning {
@@ -85,112 +97,121 @@
 <body>
   <div class="header">
     <div>{{ patient_name }}'s file</div>
-      Patient #{{patient_id}}
-    </div>
-  <div> 
-    <center>
-  {% if cancer == True %}
-  <h2 class="title">Tumour Classifcation Result:</h2>
-  <div class="tooltip">Patient's tumour is <span class="bold">cancerous</span> with a ~95% confidence interval
-    <span class="tooltiptext">The probability of a false positive is about 3%. Thus, the true accuracy is 97%</span>
+    Patient #{{patient_id}}
   </div>
-  {% else %}
-  <h2 class="title">Tumour Classifcation Result:</h2>
-  <div class="tooltip">Patient's tumour is <span class="bold">not cancerous</span> with a ~95% confidence interval
-    <span class="tooltiptext">The probability of a false negative is about 2%. Thus, the true accuracy is 98%</span>
-  </div>
-  {% endif %}
-  
-  <br><br>
-  <p>Below are the 5 input features that have the most weight in predicting whether a tumour is benign or malignant</p><hr>
-
   <div>
-    <span>
-      <figure>
-        <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300"/>
-        <figcaption>Figure 1 - histogram of mean radius as a result of tumour classification.</figcaption>
-      </figure> 
-      {% if radius_mean >= 17 %}
-        <p class="warning">mean radius is ≥ 17, thus it is highly likely that the tumour is cancerous</p>
+    <center>
+      {% if cancer == True %}
+      <h2 class="title">Tumour Classifcation Result:</h2>
+      <div class="tooltip">Patient's tumour is <span class="bold">cancerous</span> with a ~95% confidence interval
+        <span class="tooltiptext">The probability of a false positive is about 3%. Thus, the true accuracy is 97%</span>
+      </div>
       {% else %}
-        <p>Since the mean radius is not ≥ 17, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
+      <h2 class="title">Tumour Classifcation Result:</h2>
+      <div class="tooltip">Patient's tumour is <span class="bold">not cancerous</span> with a ~95% confidence interval
+        <span class="tooltiptext">The probability of a false negative is about 2%. Thus, the true accuracy is 98%</span>
+      </div>
       {% endif %}
-    </span>
-    <br>
 
-    <span>
-      <figure>
-        <img src="{{ url_for('static', filename='bcc-perimeter.png') }}" height="150" width="300"/>
-        <figcaption>Figure 2 - histogram of mean perimeter as a result of tumour classification</figcaption>
-      </figure>
-      {% if perimeter_mean >= 120 %}
-        <p class="warning">mean perimeter is ≥ 120, thus it is highly likely that the tumour is cancerous</p>
-      {% else %}
-        <p>Since the mean perimeter is not ≥ 120, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
-      {% endif %}
-    </span>
-    <br>
-    
-    <span>
-      <figure>
-        <img src="{{ url_for('static', filename='bcc-area.png') }}" height="150" width="300"/>
-        <figcaption>Figure 3 - histogram of mean area as a result of tumour classification.</figcaption>
-      </figure> 
-      {% if area_mean >= 975 %}
-        <p class="warning">mean area is ≥ 975, thus it is highly likely that the tumour is cancerous</p>
-      {% else %}
-        <p>Since the mean area is not ≥ 975, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
-      {% endif %}
-    </span>
-    <br>
-    
-    <span>
-      <figure>
-        <img src="{{ url_for('static', filename='bcc-concavity.png') }}" height="150" width="300"/>
-        <figcaption>Figure 3 - histogram of mean concavity as a result of tumour classification.</figcaption>
-      </figure> 
-      {% if concavity >= 0.16 %}
-        <p class="warning">mean concavity is ≥ 0.16, thus it is highly likely that the tumour is cancerous</p>
-      {% else %}
-        <p>Since the mean concavity is not ≥ 0.16, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
-      {% endif %}
-    </span>
-    <br>
-    
-    <span>
-      <figure>
-        <img src="{{ url_for('static', filename='bcc-area.png') }}" height="150" width="300"/>
-        <figcaption>Figure 3 - histogram of mean concave points as a result of tumour classification.</figcaption>
-      </figure> 
-      {% if concave_points >= 0.095 %}
-        <p class="warning">mean concave points is ≥ 0.095, thus it is highly likely that the tumour is cancerous</p>
-      {% else %}
-        <p>Since the mean concave points is not ≥ 0.095, it is likely that the patient does not have cancer, however use the other attributes as well before making a decision!</p>
-      {% endif %}
-    </span>
-    <br>
-  </div>
-  
-  {% if leukocyte_value < 4000 or leukocyte_value > 10000 %}
-    <h3 class="warning">Current Leukocyte Value is {{ leukocyte_value }} per microLitre of blood</h3>
-    <h3 class="warning">The normal range is between 4,000 and 10,000 White Blood Cells per microLitre of blood</h3>
-    <h4 class="warning">This may serve as an additional data point that the patient's body is fighting something foreign, which may or may not be cancerous cells.</h4>
-  {% else %}
-    <h3>Current Leukocyte value: {{ leukocyte_value }} (WBC count per microLitre of blood)</h3>
-  {% endif %}
+      <br><br>
+      <p>Below are the 5 input features that have the most weight in predicting whether a tumour is benign or malignant
+      </p>
+      <hr>
 
-  {% if temperature < 100.4 %}
-  <h3>Current Temperature: {{ temperature }}</h3>
-  {% else %}
-  <h3>Current Temperature: {{ temperature }}, patient has a fever</h3>
-  {% endif %}
+      <div>
+        <span>
+          <figure>
+            <img src="{{ url_for('static', filename='bcc-radius.png') }}" height="150" width="300" />
+            <figcaption>Figure 1 - histogram of mean radius as a result of tumour classification.</figcaption>
+          </figure>
+          {% if radius_mean >= 17 %}
+          <p class="warning">mean radius is ≥ 17, thus it is highly likely that the tumour is cancerous</p>
+          {% else %}
+          <p>Since the mean radius is not ≥ 17, it is likely that the patient does not have cancer, however use the
+            other attributes as well before making a decision!</p>
+          {% endif %}
+        </span>
+        <br>
 
-  <h3>Current Blood Pressure: {{ blood_pressure }}, blood pressure is {{ classified_blood_pressure }}</h3>
-  <h3>Current Heart Rate: {{ heart_rate }}</h3>
+        <span>
+          <figure>
+            <img src="{{ url_for('static', filename='bcc-perimeter.png') }}" height="150" width="300" />
+            <figcaption>Figure 2 - histogram of mean perimeter as a result of tumour classification</figcaption>
+          </figure>
+          {% if perimeter_mean >= 120 %}
+          <p class="warning">mean perimeter is ≥ 120, thus it is highly likely that the tumour is cancerous</p>
+          {% else %}
+          <p>Since the mean perimeter is not ≥ 120, it is likely that the patient does not have cancer, however use the
+            other attributes as well before making a decision!</p>
+          {% endif %}
+        </span>
+        <br>
+
+        <span>
+          <figure>
+            <img src="{{ url_for('static', filename='bcc-area.png') }}" height="150" width="300" />
+            <figcaption>Figure 3 - histogram of mean area as a result of tumour classification.</figcaption>
+          </figure>
+          {% if area_mean >= 975 %}
+          <p class="warning">mean area is ≥ 975, thus it is highly likely that the tumour is cancerous</p>
+          {% else %}
+          <p>Since the mean area is not ≥ 975, it is likely that the patient does not have cancer, however use the other
+            attributes as well before making a decision!</p>
+          {% endif %}
+        </span>
+        <br>
+
+        <span>
+          <figure>
+            <img src="{{ url_for('static', filename='bcc-concavity.png') }}" height="150" width="300" />
+            <figcaption>Figure 3 - histogram of mean concavity as a result of tumour classification.</figcaption>
+          </figure>
+          {% if concavity >= 0.16 %}
+          <p class="warning">mean concavity is ≥ 0.16, thus it is highly likely that the tumour is cancerous</p>
+          {% else %}
+          <p>Since the mean concavity is not ≥ 0.16, it is likely that the patient does not have cancer, however use the
+            other attributes as well before making a decision!</p>
+          {% endif %}
+        </span>
+        <br>
+
+        <span>
+          <figure>
+            <img src="{{ url_for('static', filename='bcc-area.png') }}" height="150" width="300" />
+            <figcaption>Figure 3 - histogram of mean concave points as a result of tumour classification.</figcaption>
+          </figure>
+          {% if concave_points >= 0.095 %}
+          <p class="warning">mean concave points is ≥ 0.095, thus it is highly likely that the tumour is cancerous</p>
+          {% else %}
+          <p>Since the mean concave points is not ≥ 0.095, it is likely that the patient does not have cancer, however
+            use the other attributes as well before making a decision!</p>
+          {% endif %}
+        </span>
+        <br>
+      </div>
+
+      {% if leukocyte_value < 4000 or leukocyte_value > 10000 %}
+      <h3 class="warning">Current Leukocyte Value is {{ leukocyte_value }} per microLitre of blood</h3>
+      <h3 class="warning">The normal range is between 4,000 and 10,000 White Blood Cells per microLitre of blood</h3>
+      <h4 class="warning">This may serve as an additional data point that the patient's body is fighting something
+        foreign, which may or may not be cancerous cells.</h4>
+      {% else %}
+      <h3>Current Leukocyte value: {{ leukocyte_value }} (WBC count per microLitre of blood)</h3>
+      {% endif %}
+
+      {% if temperature < 100.4 %}
+      <h3>Current Temperature: {{ temperature }}</h3>
+      {% else %}
+      <h3>Current Temperature: {{ temperature }}, patient has a fever</h3>
+      {% endif %}
+
+      <h3>Current Blood Pressure: {{ blood_pressure }}, blood pressure is {{ classified_blood_pressure }}</h3>
+      <h3>Current Heart Rate: {{ heart_rate }}</h3>
     </center>
   </div>
 
- </div>
+  </div>
 
 </body>
+
 </html>

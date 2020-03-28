@@ -1,20 +1,29 @@
 <!-- This is GUI for Breast Cancer Detection Application Using Machine Learning Classifer -->
 
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <script src="https://kit.fontawesome.com/0683469563.js" crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <title>Breast Cancer DSS </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0683469563.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Breast Cancer DSS </title>
 </head>
 <style>
     @import url('https://rsms.me/inter/inter.css');
-html { font-family: 'Inter', sans-serif; }
-@supports (font-variation-settings: normal) {
-  html { font-family: 'Inter var', sans-serif; }
-}
-    .header{
+
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    @supports (font-variation-settings: normal) {
+        html {
+            font-family: 'Inter var', sans-serif;
+        }
+    }
+
+    .header {
         background-color: darkgrey;
         color: black;
         border: black;
@@ -29,105 +38,108 @@ html { font-family: 'Inter', sans-serif; }
         float: left
     }
 
-    .icon{
+    .icon {
         margin-left: 100px;
         margin-top: 15px;
         margin-bottom: 15px;
         float: right;
     }
 
-    .form{
+    .form {
         font-family: 'Inter', sans-serif;
         padding-left: 55px;
     }
-    .miscMeasurements{
-        line-height:1px;
+
+    .miscMeasurements {
+        line-height: 1px;
     }
 
     .attributeContainer h2,
-    .attributeContainer a{
+    .attributeContainer a {
         display: inline-block;
     }
 
-    .attributeContainer h2{
+    .attributeContainer h2 {
         margin-right: 583px;
     }
-
 </style>
 
 <body>
-<div class="header row">
-    <div>
+    <div class="header row">
+        <div>
 
-        <h3 class="title">Please enter all relevant values into the patient's case file below.</h3>
-        <i class="icon fas fa-stethoscope fa-5x"></i>
-        <br>
+            <h3 class="title">Please enter all relevant values into the patient's case file below.</h3>
+            <i class="icon fas fa-stethoscope fa-5x"></i>
+            <br>
+        </div>
     </div>
-</div> 
- <div class="form">
-    <form action="{{ url_for('predict') }}"method="post">
-            <br><input type="text" name="patient_name" placeholder="patient's name"  /><br>
+    <div class="form">
+        <form action="{{ url_for('predict') }}" method="post">
+            <br><input type="text" name="patient_name" placeholder="patient's name" /><br>
             <br>
             <div class="attributeContainer">
                 <h2>Tumor Attributes </h2>
-                <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29" target="_blank">details on input features</a>
+                <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29"
+                    target="_blank">details on input features</a>
             </div>
             <div class="row">
                 <div class="col-sm">
-                    <input type="text" name="mean_radius" value="80"  placeholder="mean radius"  />
-                    <input type="text" name="mean_texture" value="80"  placeholder="mean texture"  />
-                    <input type="text" name="mean_perimeter" value="80"  placeholder="mean perimeter"  />
-                    <input type="text" name="mean_area" value="80"  placeholder="mean area"  />
-                    <input type="text" name="mean_smoothness" value="80"  placeholder="mean smoothness"  />
-                    <input type="text" name="mean_compactness" value="80"  placeholder="mean compactness"  />
-                    <input type="text" name="mean_concavity" value="80"  placeholder="mean concavity"  />
-                    <input type="text" name="mean_concave_points" value="80"  placeholder="mean concave points"  />
-                    <input type="text" name="mean_symmetry" value="80"  placeholder="mean symmetry"  />
-                    <input type="text" name="mean_fractal_dimension" value="80"  placeholder="mean fractal dimension"  />
+                    <input type="text" name="mean_radius" value="80" placeholder="mean radius" />
+                    <input type="text" name="mean_texture" value="80" placeholder="mean texture" />
+                    <input type="text" name="mean_perimeter" value="80" placeholder="mean perimeter" />
+                    <input type="text" name="mean_area" value="80" placeholder="mean area" />
+                    <input type="text" name="mean_smoothness" value="80" placeholder="mean smoothness" />
+                    <input type="text" name="mean_compactness" value="80" placeholder="mean compactness" />
+                    <input type="text" name="mean_concavity" value="80" placeholder="mean concavity" />
+                    <input type="text" name="mean_concave_points" value="80" placeholder="mean concave points" />
+                    <input type="text" name="mean_symmetry" value="80" placeholder="mean symmetry" />
+                    <input type="text" name="mean_fractal_dimension" value="80" placeholder="mean fractal dimension" />
                 </div>
                 <div class="col-sm">
-                    <input type="text" name="radius_error" value="80"  placeholder="radius error"  />
-                    <input type="text" name="texture_error" value="80"  placeholder="texture error"  />
-                    <input type="text" name="perimeter_error" value="80"  placeholder="perimeter error"  />
-                    <input type="text" name="area_error" value="80"  placeholder="area error "  />
-                    <input type="text" name="smoothness_error" value="80"  placeholder="smoothness error"  />
-                    <input type="text" name="compactness_error" value="80"  placeholder="compactness error"  />
-                    <input type="text" name="concavity_error" value="80"  placeholder="concavity error"  />
-                    <input type="text" name="concave_points_error" value="80"  placeholder="concave points error"  />
-                    <input type="text" name="symmetry_error" value="80"  placeholder="symmetry error"  />
-                    <input type="text" name="fractal_dimension_error" value="80"  placeholder="fractal dimension error"  /> 
-                </div>  
+                    <input type="text" name="radius_error" value="80" placeholder="radius error" />
+                    <input type="text" name="texture_error" value="80" placeholder="texture error" />
+                    <input type="text" name="perimeter_error" value="80" placeholder="perimeter error" />
+                    <input type="text" name="area_error" value="80" placeholder="area error " />
+                    <input type="text" name="smoothness_error" value="80" placeholder="smoothness error" />
+                    <input type="text" name="compactness_error" value="80" placeholder="compactness error" />
+                    <input type="text" name="concavity_error" value="80" placeholder="concavity error" />
+                    <input type="text" name="concave_points_error" value="80" placeholder="concave points error" />
+                    <input type="text" name="symmetry_error" value="80" placeholder="symmetry error" />
+                    <input type="text" name="fractal_dimension_error" value="80"
+                        placeholder="fractal dimension error" />
+                </div>
                 <div class="col-sm">
-                    <input type="text" name="worst_radius" value="80"  placeholder="worst radius"  />
-                    <input type="text" name="worst_texture" value="80"  placeholder="worst texture"  />
-                    <input type="text" name="worst_perimeter" value="80"  placeholder="worst perimeter"  />
-                    <input type="text" name="worst_area" value="80"  placeholder="worst area"  />
-                    <input type="text" name="worst_smoothness" value="80"  placeholder="worst smoothness"  />
-                    <input type="text" name="worst_compactness" value="80"  placeholder="worst compactness"  />
-                    <input type="text" name="worst_concavity" value="80"  placeholder="worst concavity"  />
-                    <input type="text" name="worst_concave_points" value="80"  placeholder="worst concave points"  />
-                    <input type="text" name="worst_symmetry" value="80"  placeholder="worst symmetry"  />
-                    <input type="text" name="worst_fractal_dimension" value="80"  placeholder="worst fractal dimension"  />
-                </div> 	
+                    <input type="text" name="worst_radius" value="80" placeholder="worst radius" />
+                    <input type="text" name="worst_texture" value="80" placeholder="worst texture" />
+                    <input type="text" name="worst_perimeter" value="80" placeholder="worst perimeter" />
+                    <input type="text" name="worst_area" value="80" placeholder="worst area" />
+                    <input type="text" name="worst_smoothness" value="80" placeholder="worst smoothness" />
+                    <input type="text" name="worst_compactness" value="80" placeholder="worst compactness" />
+                    <input type="text" name="worst_concavity" value="80" placeholder="worst concavity" />
+                    <input type="text" name="worst_concave_points" value="80" placeholder="worst concave points" />
+                    <input type="text" name="worst_symmetry" value="80" placeholder="worst symmetry" />
+                    <input type="text" name="worst_fractal_dimension" value="80"
+                        placeholder="worst fractal dimension" />
+                </div>
             </div>
             <br><br>
             <h2> Recorded Patient Measurements</h2><br>
             <div class="row miscMeasurements">
                 <div class="col-sm">
                     <p>Blood Leukocyte Levels</p>
-                    <input type="text" name="leukocyte" placeholder="8000 (WBC/µL blood)"/><br>
+                    <input type="text" name="leukocyte" placeholder="8000 (WBC/µL blood)" /><br>
                 </div>
                 <div class="col-sm">
                     <p> Temperature</p>
-                    <input type="text" name="temperature" placeholder="98 (°F)"/><br>
+                    <input type="text" name="temperature" placeholder="98 (°F)" /><br>
                 </div>
                 <div class="col-sm">
                     <p> Blood Pressure (mmHg)</p>
-                    <input type="text" name="blood pressure" placeholder="120/80 (mmHg)"/><br>
+                    <input type="text" name="blood pressure" placeholder="120/80 (mmHg)" /><br>
                 </div>
                 <div class="col-sm">
                     <p> Heart Rate (bpm)</p>
-                    <input type="text" name="heart rate" placeholder="80 (bpm)"/><br>
+                    <input type="text" name="heart rate" placeholder="80 (bpm)" /><br>
                 </div>
             </div>
             <br>
@@ -136,10 +148,11 @@ html { font-family: 'Inter', sans-serif; }
             <center>
                 <button type="submit" class="btn btn-outline-dark"><strong>Get Results</strong></button></a>
             </center>
-            
-        
-    </form>
- </div>
+
+
+        </form>
+    </div>
 
 </body>
+
 </html>
