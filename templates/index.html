@@ -43,6 +43,16 @@ html { font-family: 'Inter', sans-serif; }
     .miscMeasurements{
         line-height:1px;
     }
+
+    .attributeContainer h2,
+    .attributeContainer a{
+        display: inline-block;
+    }
+
+    .attributeContainer h2{
+        margin-right: 583px;
+    }
+
 </style>
 
 <body>
@@ -55,10 +65,13 @@ html { font-family: 'Inter', sans-serif; }
     </div>
 </div> 
  <div class="form">
-    <form action="{{ url_for('predict')}}"method="post">
+    <form action="{{ url_for('predict') }}"method="post">
             <br><input type="text" name="patient_name" placeholder="patient's name"  /><br>
             <br>
-            <h2>Tumor Attributes </h2>
+            <div class="attributeContainer">
+                <h2>Tumor Attributes </h2>
+                <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29" target="_blank">details on input features</a>
+            </div>
             <div class="row">
                 <div class="col-sm">
                     <input type="text" name="mean_radius" value="80"  placeholder="mean radius"  />

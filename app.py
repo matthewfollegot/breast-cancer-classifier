@@ -10,7 +10,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     input_features = [x for x in request.form.values()]
     patient_name = input_features.pop(0)
@@ -49,7 +49,7 @@ def predict():
 
     classified_blood_pressure = classify_blood_pressure(blood_pressure)
         
-
+    # potential to-do, clean up all params and place in dict
     return render_template(
         'dashboard.html',
         cancer=cancer,
@@ -69,8 +69,6 @@ def predict():
 
 def classify_blood_pressure(blood_pressure):
     systolic, diastolic = [int(num) for num in blood_pressure.split('/')]
-    print(systolic)
-    print(diastolic)
     if systolic < 90 and diastolic < 60:
         return "low blood pressure"
     if systolic < 120 and diastolic <= 80:
