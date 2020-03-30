@@ -203,9 +203,14 @@
       <h3>Current Temperature: {{ temperature }}</h3>
       {% else %}
       <h3>Current Temperature: {{ temperature }}, patient has a fever</h3>
+      <a href="https://journals.sagepub.com/doi/pdf/10.1177/107327481702400212" target="_blank">Fever is frequently seen in patients with cancer and can be associated with a variety of infectious
+        and noninfectious causes. To treat patients in a timely
+        manner and to minimize morbidity and mortality, it is
+        paramount that health care professionals determine
+        the cause of fever (Pasikhova, 2017).</a>
       {% endif %}
 
-      <h3>Current Blood Pressure: {{ blood_pressure }}, blood pressure is {{ classified_blood_pressure }}</h3>
+      <h3>Current Blood Pressure: {{ blood_pressure }}, blood pressure is classified as: {{ classified_blood_pressure }}</h3>
       <h3>Current Heart Rate: {{ heart_rate }}</h3>
     </center>
   </div>
